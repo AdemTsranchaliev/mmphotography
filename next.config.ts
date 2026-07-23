@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const repo = "mmphotography";
 const isGhPages = process.env.GITHUB_PAGES === "true";
+const basePath = isGhPages ? `/${repo}` : "";
 
 const nextConfig: NextConfig = {
   output: "export",
@@ -9,10 +10,13 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   ...(isGhPages
     ? {
-        basePath: `/${repo}`,
-        assetPrefix: `/${repo}/`,
+        basePath,
+        assetPrefix: `${basePath}/`,
       }
     : {}),
 };
