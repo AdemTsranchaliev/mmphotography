@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Footer() {
   return (
     <footer className="px-6 pb-10 pt-2 md:px-10">
@@ -6,9 +8,9 @@ export function Footer() {
           M&amp;M Photography
         </p>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <a href="/galeria" className="nav-link">
+          <Link href="/galeria" className="nav-link">
             Галерия
-          </a>
+          </Link>
           <a
             href="https://instagram.com/_mmartography_"
             target="_blank"

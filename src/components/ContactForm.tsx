@@ -25,28 +25,65 @@ export function ContactForm() {
 
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
+    const name = String(data.name ?? "").trim();
+    const email = String(data.email ?? "").trim();
+    const phone = String(data.phone ?? "").trim();
+    const message = String(data.message ?? "").trim();
+    const honeypot = String(data.company ?? "").trim();
+
+    if (honeypot) {
+      setStatus("success");
+      return;
+    }
+
+    if (name.length < 2) {
+      setStatus("error");
+      setError("Моля, въведете име.");
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus("error");
+      setError("Моля, въведете валиден имейл.");
+      return;
+    }
+
+    if (!service) {
+      setStatus("error");
+      setError("Моля, изберете тип сесия.");
+      return;
+    }
+
+    if (message.length < 10) {
+      setStatus("error");
+      setError("Съобщението е твърде кратко.");
+      return;
+    }
+
+    const body = [
+      `Име: ${name}`,
+      `Имейл: ${email}`,
+      `Телефон: ${phone || "—"}`,
+      `Услуга: ${service}`,
+      "",
+      message,
+    ].join("\n");
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      const json = (await res.json()) as { ok: boolean; error?: string };
-
-      if (!res.ok || !json.ok) {
-        setStatus("error");
-        setError(json.error ?? "Неуспешно изпращане.");
-        return;
-      }
-
-      form.reset();
-      setService("");
-      setStatus("success");
+      await navigator.clipboard.writeText(body);
     } catch {
-      setStatus("error");
-      setError("Няма връзка. Опитайте отново.");
+      /* clipboard may be blocked */
     }
+
+    window.open(
+      "https://instagram.com/_mmartography_",
+      "_blank",
+      "noopener,noreferrer",
+    );
+
+    form.reset();
+    setService("");
+    setStatus("success");
   }
 
   if (status === "success") {
@@ -59,7 +96,8 @@ export function ContactForm() {
           Благодарим!
         </h3>
         <p className="mx-auto mt-4 max-w-sm text-cream/75">
-          Получихме запитването. Ще се свържем скоро с вас.
+          Съобщението е копирано. Изпратете го като DM на @_mmartography_ в
+          Instagram.
         </p>
         <button
           type="button"

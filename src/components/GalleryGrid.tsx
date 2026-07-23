@@ -5,16 +5,18 @@ import { useEffect, useMemo, useState } from "react";
 import {
   galleryCategories,
   galleryPhotos,
+  parseGalleryCategory,
   type GalleryCategory,
 } from "@/data/gallery";
 
-export function GalleryGrid({
-  initialCategory = "Всички",
-}: {
-  initialCategory?: GalleryCategory;
-}) {
-  const [active, setActive] = useState<GalleryCategory>(initialCategory);
+export function GalleryGrid() {
+  const [active, setActive] = useState<GalleryCategory>("Всички");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const cat = new URLSearchParams(window.location.search).get("cat");
+    setActive(parseGalleryCategory(cat ?? undefined));
+  }, []);
 
   const photos = useMemo(() => {
     if (active === "Всички") return [...galleryPhotos];

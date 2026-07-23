@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { SiteHeader } from "@/components/SiteHeader";
-import { galleryPhotos, parseGalleryCategory } from "@/data/gallery";
+import { galleryPhotos } from "@/data/gallery";
 
 export const metadata: Metadata = {
   title: "Галерия — M&M Photography",
@@ -12,13 +12,7 @@ export const metadata: Metadata = {
     "Още снимки от сватби, кръщенета, балове, рождени дни и персонални сесии.",
 };
 
-export default async function GaleriaPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ cat?: string }>;
-}) {
-  const params = await searchParams;
-  const initialCategory = parseGalleryCategory(params.cat);
+export default function GaleriaPage() {
   const cover = galleryPhotos[0];
 
   return (
@@ -59,7 +53,7 @@ export default async function GaleriaPage({
 
       <section className="px-6 pb-24 md:px-10 md:pb-32">
         <div className="mx-auto max-w-7xl">
-          <GalleryGrid initialCategory={initialCategory} />
+          <GalleryGrid />
         </div>
       </section>
 
