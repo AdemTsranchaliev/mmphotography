@@ -1,6 +1,5 @@
 import Image from "next/image";
 import instagram from "@/data/instagram.json";
-import { asset } from "@/lib/asset";
 
 export function Instagram() {
   return (
@@ -16,7 +15,7 @@ export function Instagram() {
           <div className="flex items-start gap-4 md:items-center">
             <div className="relative h-[4.25rem] w-[4.25rem] shrink-0 overflow-hidden rounded-full ring-2 ring-coral/50 ring-offset-4 ring-offset-bg">
               <Image
-                src={asset(instagram.profileImage)}
+                src={instagram.profileImage}
                 alt={instagram.name}
                 fill
                 sizes="68px"
@@ -53,7 +52,7 @@ export function Instagram() {
               style={{ transitionDelay: `${Math.min(index * 55, 320)}ms` }}
             >
               <Image
-                src={asset(post.src)}
+                src={post.src}
                 alt={post.alt}
                 fill
                 sizes="(max-width: 900px) 70vw, 33vw"

@@ -1,12 +1,10 @@
-import { asset } from "@/lib/asset";
-
 export const works = [
   {
     id: "svatba-1",
     title: "Сватба",
     place: "Сватбени фотосесии",
     span: "md:col-span-7 md:row-span-2",
-    src: asset("/images/svatba-1.jpg"),
+    src: "/images/svatba-1.jpg",
     alt: "Сватбена фотография от M&M Photography",
   },
   {
@@ -14,7 +12,7 @@ export const works = [
     title: "Рожден ден",
     place: "Празници",
     span: "md:col-span-5",
-    src: asset("/images/rojden-1.jpg"),
+    src: "/images/rojden-1.jpg",
     alt: "Фотография от рожден ден",
   },
   {
@@ -22,7 +20,7 @@ export const works = [
     title: "Кръщене",
     place: "Семейни моменти",
     span: "md:col-span-5",
-    src: asset("/images/krshhene-1.jpg"),
+    src: "/images/krshhene-1.jpg",
     alt: "Фотография от кръщене",
   },
   {
@@ -30,7 +28,7 @@ export const works = [
     title: "Бал",
     place: "Абитуриенти",
     span: "md:col-span-4",
-    src: asset("/images/bal-1.jpg"),
+    src: "/images/bal-1.jpg",
     alt: "Бална фотосесия",
   },
   {
@@ -38,7 +36,7 @@ export const works = [
     title: "Сватба",
     place: "Сватбени фотосесии",
     span: "md:col-span-8",
-    src: asset("/images/svatba-2.jpg"),
+    src: "/images/svatba-2.jpg",
     alt: "Сватбен кадър от M&M Photography",
   },
   {
@@ -46,7 +44,7 @@ export const works = [
     title: "Персонални",
     place: "Портрети",
     span: "md:col-span-4",
-    src: asset("/images/personalni-1.jpg"),
+    src: "/images/personalni-1.jpg",
     alt: "Персонална фотосесия",
   },
   {
@@ -54,7 +52,7 @@ export const works = [
     title: "Персонални",
     place: "Портрети",
     span: "md:col-span-4",
-    src: asset("/images/featured-2.jpg"),
+    src: "/images/featured-2.jpg",
     alt: "Персонален портрет",
   },
   {
@@ -62,10 +60,10 @@ export const works = [
     title: "Бал",
     place: "Абитуриенти",
     span: "md:col-span-4",
-    src: asset("/images/bal-2.jpg"),
+    src: "/images/bal-2.jpg",
     alt: "Бална фотография",
   },
 ] as const;
 
-export const heroImage = asset("/images/hero.jpg");
-export const aboutImage = asset("/images/about.jpg");
+export const heroImage = "/images/hero.jpg";
+export const aboutImage = "/images/about.jpg";
